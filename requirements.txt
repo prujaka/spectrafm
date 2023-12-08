@@ -1,0 +1,6 @@
+fastapi
+librosa
+numpy
+opencv-python
+pandas
+scikit-image
