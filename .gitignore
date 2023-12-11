@@ -1,5 +1,5 @@
 .DS_Store
 .idea/
 spectrafm.egg-info/
-notebooks/.ipynb_checkpoints/
+notebooks/
 **/__pycache__
