@@ -20,4 +20,3 @@ find data/fma_small -mindepth 2 -type f -exec mv -i '{}' data/mp3 \;
 rm -rf data/fma_small
 rm fma_small.zip
 ```
-
