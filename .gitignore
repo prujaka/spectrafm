@@ -3,5 +3,6 @@
 spectrafm.egg-info/
 notebooks/
 data/
+data_fma/
 **/__pycache__
 **.zip
