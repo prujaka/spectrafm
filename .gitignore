@@ -6,3 +6,4 @@ data/
 data_fma/
 **/__pycache__
 **.zip
+notebooks/.ipynb_checkpoints/
