@@ -1,5 +1,11 @@
+black
 fastapi
+isort
+jupyter
+jupyter_contrib_nbextensions
+jupyterlab-code-formatter
 librosa
+notebook==6.5.6
 numpy
 opencv-python
 pandas
