@@ -1,6 +1,7 @@
 ```zsh
 mkdir data
 mkdir data/mp3
+mkdir data/png
 ```
 
 ```zsh
