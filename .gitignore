@@ -1,9 +1,10 @@
 .DS_Store
 .idea/
 spectrafm.egg-info/
-notebooks/
 data/
 data_fma/
 **/__pycache__
 **.zip
 notebooks/.ipynb_checkpoints/
+.env
+.envrc
