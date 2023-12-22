@@ -19,8 +19,8 @@ def song_dict(song_id: int, df: pd.DataFrame):
     the track_id, the artist name, the song name, the mp3 file path
     and the spectrogram path"""
     d = df[df['track_id'] == 'track_id'].squeeze(axis=0).to_dict()
-    d['img_path'] = img_path(song_id)
-    d['mp3_path'] = d['img_path'].replace('/png', '/mp3').replace('.png',
+    d['png_path'] = img_path(song_id)
+    d['mp3_path'] = d['png_path'].replace('/png', '/mp3').replace('.png',
                                                                   '.mp3')
     return d
 
@@ -32,7 +32,7 @@ def img_dict(img_path_: str, df: pd.DataFrame):
 
     track_id = img_id(img_path_)
     d = df[df['track_id'] == track_id].squeeze(axis=0).to_dict()
-    d['img_path'] = img_path_
+    d['png_path'] = img_path_
     d['mp3_path'] = img_path_.replace('/png', '/mp3').replace('.png', '.mp3')
     return d
 
@@ -67,7 +67,7 @@ def img_neighbors(ref_image, png_dir: str):
     return closest_images_paths
 
 
-def predict_playlist(song: str = 'Castle Of Stars', artist: str = 'Ed Askew'):
+def predict_playlist(artist: str = 'Ed Askew', song: str = 'Castle Of Stars'):
     """Find 10 closest neighbors of the spectrogram of a given seed song
     to spectrograms of the songs in the png folder. Only single artist is
     supported. If the song is not in the dataset, return the song's name.
@@ -99,15 +99,14 @@ def predict_playlist(song: str = 'Castle Of Stars', artist: str = 'Ed Askew'):
 
     # get the seed song's spectrogram from its id
     seed_song_id = seed_song_df.squeeze().to_dict()['track_id']
-    seed_song_img_path = song_dict(seed_song_id, seed_song_df)['img_path']
+    seed_song_img_path = song_dict(seed_song_id, seed_song_df)['png_path']
     ref_img = cv2.imread(seed_song_img_path, cv2.IMREAD_GRAYSCALE)
 
     # build up the playlist of the closest songs
     closest_images = img_neighbors(ref_img, params.LOCAL_PNG_DIR)
-    img_dicts = [img_dict(img, df) for img in closest_images]
-    playlist_dict = {'playlist': img_dicts}
+    playlist = [img_dict(img, df) for img in closest_images]
 
-    return playlist_dict
+    return playlist
 
 
 if __name__ == '__main__':
