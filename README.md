@@ -51,6 +51,11 @@ To utilize the model, run the web interface and follow the straightforward instr
 streamlit run streamlit_app.py
 ```
 
+Or, alternatively, you can open a jupyter notebook and use the model there:
+```zsh
+cd notebooks
+jupyter notebook spectrograms.ipynb 
+```
 ## Conclusion
 
 Thank you for exploring SpectraFM! I hope this tool adds a new dimension to your music discovery journey. If you have feedback, questions, or want to contribute, feel free to [reach out](sergeyprujina@gmail.com) or open an issue.
