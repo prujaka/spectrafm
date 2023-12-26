@@ -10,3 +10,4 @@ numpy
 opencv-python
 pandas
 scikit-image
+streamlit
