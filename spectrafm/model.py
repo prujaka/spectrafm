@@ -2,39 +2,7 @@ import cv2
 import os
 import pandas as pd
 import spectrafm.parameters as params
-
-
-def img_id(img_path_: str):
-    """Given the path of a png file, returns the track id"""
-    return int(img_path_.split('/')[-1].split('.')[0])
-
-
-def img_path(song_id: int):
-    """Given the track id, returns the path of a png file"""
-    return os.path.join(params.LOCAL_PNG_DIR, f'{song_id:06}.png')
-
-
-def song_dict(song_id: int, df: pd.DataFrame):
-    """Given the song's id, returns a dictionary containing
-    the track_id, the artist name, the song name, the mp3 file path
-    and the spectrogram path"""
-    d = df[df['track_id'] == 'track_id'].squeeze(axis=0).to_dict()
-    d['png_path'] = img_path(song_id)
-    d['mp3_path'] = d['png_path'].replace('/png', '/mp3').replace('.png',
-                                                                  '.mp3')
-    return d
-
-
-def img_dict(img_path_: str, df: pd.DataFrame):
-    """Given the song's spectrogram's path, returns a dictionary containing
-    the track_id, the artist name, the song name, the mp3 file path
-    and the spectrogram path"""
-
-    track_id = img_id(img_path_)
-    d = df[df['track_id'] == track_id].squeeze(axis=0).to_dict()
-    d['png_path'] = img_path_
-    d['mp3_path'] = img_path_.replace('/png', '/mp3').replace('.png', '.mp3')
-    return d
+from spectrafm.utilities import song_dict, img_dict
 
 
 def img_neighbors(ref_image, png_dir: str):
@@ -110,5 +78,4 @@ def predict_playlist(artist: str = 'Ed Askew', song: str = 'Castle Of Stars'):
 
 
 if __name__ == '__main__':
-    print('Nothing happened, just spectrograms.py executed as module'
-          'with a dummy main function.')
+    print(predict_playlist())
